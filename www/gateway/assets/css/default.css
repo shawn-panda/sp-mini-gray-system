@@ -1,0 +1,141 @@
+body {
+    font-family:"Microsoft YaHei";
+}
+
+input[type=text], select {
+    background-color:#a8ecd0;
+    border:none;
+    color:#000000;
+    font-size:1em;
+    line-height:1.6em;
+    padding:0 8px;
+    margin:0;
+    width:60%;
+    resize:none;
+    outline:none;
+    word-wrap:break-word;
+    text-overflow:ellipsis;
+}
+
+select {
+    height:24px;
+    width:86px;
+}
+
+input:disabled {
+    background-color:#efefef;
+    border:none;
+    color:#333333;
+}
+
+input.button {
+    background:#39d495;
+    border:none;
+    color:white;
+    width:160px;
+    line-height:32px;
+    margin:10px 0 10px 45px;
+    border-radius: 25px;
+    font-size: 18px;
+}
+
+input.btn-add {
+    background:mediumblue;
+}
+
+h2 {
+    padding: 20px 0 20px;
+    font-size: 32px;
+    line-height: 42px;
+    color: #6e7886;
+}
+
+.content {
+    min-width: 320px;
+    max-width: 960px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+table {
+    table-layout:fixed;
+    width:100%;
+}
+
+table th {
+    font-weight: bold;
+}
+
+table thead tr {
+    background:darkgray;
+    color:white;
+}
+
+table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 6px 13px;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+.checkbox {
+    width: 90px;
+    height: 20px;
+    background: #000000; 
+    border-radius: 25px;
+    position: relative;
+}
+
+.checkbox:before {
+    content: 'ON';
+    position: absolute;
+    top: 1px;
+    left: 6px;
+    height: 2px;
+    color: #39d495;
+    font-size: 14px;
+}
+
+.checkbox:after {
+    content: 'OFF';
+    position: absolute;
+    top: 1px;
+    left: 58px;
+    height: 2px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.checkbox label {
+    display: block;
+    width: 52px;
+    height: 16px;
+    border-radius: 23px;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: #ffffff;
+    z-index: 1;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+    left: 36px;
+    background: #39d495;
+}
