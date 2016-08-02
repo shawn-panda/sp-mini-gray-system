@@ -34,6 +34,8 @@ if( $redis_ok && $is_submit )
 
         $redis->hMset($key, $rule);
     }
+    
+    header('Location:/');
 }
 
 $map = array();
@@ -44,7 +46,11 @@ if( $redis_ok && ! $is_submit )
     {
         $key  = $prefix . $i;
         $rule = $redis->hMget($key, $field_table );
-        $rule['enabled'] = ! empty($rule['source']);
+        if( empty($rule['source'])  )
+        {
+            break;
+        }
+        $rule['enabled'] = TRUE;
         $map[$key] = $rule;
     }
 }
