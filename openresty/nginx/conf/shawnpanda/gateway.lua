@@ -31,27 +31,30 @@ for i=0,7,1 do
     local start_timestamp = tonumber(result[5])
     local end_timestamp   = tonumber(result[6])
 
-    -- 0. 判断规则有效性
-    if null == source or ngx.null == source then
-        break
-    end
+    -- 模拟continue
+    while true do
+        -- 0. 判断规则有效性
+        if null == source or ngx.null == source then
+            break
+        end
 
-    -- 1. 获取标记
-    local flag = helper:getFlagBySource(source, key)
-    if nil == flag then
-        break
-    end
+        -- 1. 获取标记
+        local flag = helper:getFlagBySource(source, key)
+        if nil == flag then
+            break
+        end
 
-    -- 2. 判断标记有效性
-    local is_valid = helper:verifyFlagByType(type, flag, value)
-    if not is_valid then
-        break
-    end
+        -- 2. 判断标记有效性
+        local is_valid = helper:compareFlagByType(type, flag, value)
+        if not is_valid then
+            break
+        end
 
-    -- 3. 判断时间有效性
-    if timestamp > start_timestamp and timestamp < end_timestamp then
-        is_beta = true
-        break
+        -- 3. 判断时间有效性
+        if timestamp > start_timestamp and timestamp < end_timestamp then
+            is_beta = true
+            break
+        end
     end
 end
 
