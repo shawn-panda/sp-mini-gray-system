@@ -2,7 +2,7 @@
 
 return array(
     0 => array(
-        'enabled' => true,
+        'enabled' => FALSE,
         'source'  => 'uri',
         'type'    => 'int',
         'key'     => 'is_beta',
@@ -11,7 +11,7 @@ return array(
         'end_timestamp'   => strtotime(date('Y-m-d', strtotime('+30 days')))
     ),
     1 => array(
-        'enabled' => true,
+        'enabled' => FALSE,
         'source'  => 'cookie',
         'type'    => 'range',
         'key'     => 'user_id',
@@ -20,7 +20,7 @@ return array(
         'end_timestamp'   => strtotime('+30 days')
     ),
     2 => array(
-        'enabled' => false,
+        'enabled' => FALSE,
         'source'  => 'scale',
         'type'    => 'int',
         'key'     => 'percent',
