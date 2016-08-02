@@ -114,7 +114,7 @@ _M.getCookie = function(self)
     return cookie
 end
 
-_M.getClientIp = function(self)
+_M.getClientIP = function(self)
     local ip = ngx.req.get_headers()['X-Real-IP']
     if nil == ip then
         ip = ngx.req.get_headers()['X_Forwarded_For']
