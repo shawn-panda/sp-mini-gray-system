@@ -35,9 +35,9 @@ if( $redis_ok && $is_submit )
         if( 'ip' == $rule['source'] )
         {
             $pieces = explode(',', $rule['value']);
-            foreach((array)$pieces as $key=>$value)
+            foreach((array)$pieces as $k=>$v)
             {
-                $pieces[$key] = ip2long($value);
+                $pieces[$k] = ip2long($v);
             }
             $rule['value'] = implode(',', $pieces);
         }
@@ -59,6 +59,15 @@ if( $redis_ok && ! $is_submit )
         if( empty($rule['source'])  )
         {
             break;
+        }
+        if( 'ip' == $rule['source'] )
+        {
+            $pieces = explode(',', $rule['value']);
+            foreach((array)$pieces as $k=>$v)
+            {
+                $pieces[$k] = long2ip($v);
+            }
+            $rule['value'] = implode(',', $pieces);
         }
         $rule['enabled'] = TRUE;
         $map[$key] = $rule;
