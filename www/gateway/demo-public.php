@@ -21,8 +21,8 @@ return array(
     ),
     2 => array(
         'enabled' => FALSE,
-        'source'  => 'scale',
-        'type'    => 'int',
+        'source'  => 'random',
+        'type'    => 'threshold',
         'key'     => 'percent',
         'value'   => '20',
         'start_timestamp' => strtotime(date('Y-m-d')),
