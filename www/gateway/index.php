@@ -13,13 +13,15 @@ if( class_exists('Redis') )
 
 if( $redis_ok && $is_submit )
 {
+    $offset = 0;
     for($i=0; $i<8; $i++)
     {
         $key = $prefix . $i;
 
+        $redis->delete($key);
+
         if( empty($_POST[$key . '_enabled']) )
         {
-            $redis->delete($key);
             continue;
         }
 
@@ -42,7 +44,11 @@ if( $redis_ok && $is_submit )
             $rule['value'] = implode(',', $pieces);
         }
 
+        $key = $prefix . $offset;
+        
         $redis->hMset($key, $rule);
+
+        $offset++;
     }
     
     header('Location:/');
