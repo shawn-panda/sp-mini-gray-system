@@ -56,6 +56,10 @@ for i=0,7,1 do
             break
         end
     end
+
+    if is_beta then
+      break
+    end
 end
 
 cache:close()
