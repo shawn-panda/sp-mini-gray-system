@@ -111,7 +111,7 @@ for($i=0; $i<8; $i++)
                             <option value="host"<?php if( isset($map[$key]['source']) && 'host' == $map[$key]['source'] ) { echo ' selected="selected"'; } ?>>host</option>
                             <option value="cookie"<?php if( isset($map[$key]['source']) && 'cookie' == $map[$key]['source'] ) { echo ' selected="selected"'; } ?>>cookie</option>
                             <option value="ip"<?php if( isset($map[$key]['source']) && 'ip' == $map[$key]['source'] ) { echo ' selected="selected"'; } ?>>ip</option>
-                            <option value="scale"<?php if( isset($map[$key]['source']) && 'scale' == $map[$key]['source'] ) { echo ' selected="selected"'; } ?>>scale</option>
+                            <option value="random"<?php if( isset($map[$key]['source']) && 'random' == $map[$key]['source'] ) { echo ' selected="selected"'; } ?>>random</option>
                         </select>
                     </td>
                 </tr>
@@ -122,7 +122,7 @@ for($i=0; $i<8; $i++)
                             <option value="int"<?php if( isset($map[$key]['type']) && 'int' == $map[$key]['type'] ) { echo ' selected="selected"'; } ?>>int</option>
                             <option value="set"<?php if( isset($map[$key]['type']) && 'set' == $map[$key]['type'] ) { echo ' selected="selected"'; } ?>>set</option>
                             <option value="range"<?php if( isset($map[$key]['type']) && 'range' == $map[$key]['type'] ) { echo ' selected="selected"'; } ?>>range</option>
-                            <option value="random"<?php if( isset($map[$key]['type']) && 'random' == $map[$key]['type'] ) { echo ' selected="selected"'; } ?>>random</option>
+                            <option value="threshold"<?php if( isset($map[$key]['type']) && 'threshold' == $map[$key]['type'] ) { echo ' selected="selected"'; } ?>>threshold</option>
                         </select>
                     </td>
                 </tr>
