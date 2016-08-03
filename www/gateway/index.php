@@ -32,6 +32,16 @@ if( $redis_ok && $is_submit )
             'end_timestamp'   => strtotime($_POST[$key . '_end_timestamp']),
         );
 
+        if( 'ip' == $rule['source'] )
+        {
+            $pieces = explode(',', $rule['value']);
+            foreach((array)$pieces as $key=>$value)
+            {
+                $pieces[$key] = ip2long($value);
+            }
+            $rule['value'] = implode(',', $pieces);
+        }
+
         $redis->hMset($key, $rule);
     }
     
