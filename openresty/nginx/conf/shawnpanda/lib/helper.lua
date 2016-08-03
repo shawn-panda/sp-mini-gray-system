@@ -6,6 +6,7 @@ local modulename = "helper"
 local _M = {}
       _M._VERSION = '0.0.1'
 
+-- 获取灰度标记
 _M.getFlagBySource = function(self, source, key)
     -- 1. source:uri
     if 'uri' == source then
@@ -24,17 +25,19 @@ _M.getFlagBySource = function(self, source, key)
 
     -- 4. source:ip
     if 'ip' == source then
-        return self:getClientIP()
+        local ip = self:getClientIP()
+        return self:ip2long(ip)
     end
 
-    -- 5. source:scale
-    if 'scale' == source then
+    -- 5. source:random
+    if 'random' == source then
         return self:getRandomNumber()
     end
 
     return nil
 end
 
+-- 校验灰度标记
 _M.verifyFlagByType = function(self, type, flag, value)
      -- 1. type:int
     if 'int' == type then
@@ -51,14 +54,15 @@ _M.verifyFlagByType = function(self, type, flag, value)
         return self:findInSet(value, flag)
     end
 
-    -- 4. type:random
-    if 'random' == type then
+    -- 4. type:threshold
+    if 'threshold' == type then
         return tonumber(value) > tonumber(flag)
     end
 
     return false
 end
 
+-- 字符串分隔
 _M.split = function(self, str, delimiter)
     local t = {}
     while (true) do
@@ -79,6 +83,7 @@ _M.split = function(self, str, delimiter)
     return t
 end 
 
+-- 集合中查找
 _M.findInSet = function(self, str, flag)
     local s = ',' .. str .. ','
     local p = ',' .. flag .. ','
@@ -86,6 +91,7 @@ _M.findInSet = function(self, str, flag)
     return nil ~= string.find(s, p)
 end
 
+-- 范围内查找
 _M.findInRange = function(self, str, flag)
     local min_value = 0
     local max_value = 0
@@ -98,11 +104,13 @@ _M.findInRange = function(self, str, flag)
     return min_value < tonumber(flag) and max_value > tonumber(flag)
 end
 
+-- 获取随机数
 _M.getRandomNumber = function(self)
     math.randomseed(tostring(os.time()):reverse():sub(1, 6))
     return math.random(0, 99)
 end
 
+-- 获取Cookie
 _M.getCookie = function(self)
     local cookie = {}
     if ngx.var.http_cookie then
@@ -114,6 +122,7 @@ _M.getCookie = function(self)
     return cookie
 end
 
+-- 获取IP
 _M.getClientIP = function(self)
     local ip = ngx.req.get_headers()['X-Real-IP']
     if nil == ip then
@@ -128,6 +137,7 @@ _M.getClientIP = function(self)
     return ip
 end
 
+-- 获取域名头
 _M.getDomainHeaderName = function(self)
     local http_info   = self:split(ngx.var.http_host, '%.')
     local pieces      = table.getn(http_info)
@@ -142,6 +152,16 @@ _M.getDomainHeaderName = function(self)
     end
 
     return header_name
+end
+
+--ip转整数
+_M.ip2long = function(self, ip)
+  local ips = self:split(ip, '%.')
+  local num = 0
+  for i,v in pairs(ips) do
+    num = num +(tonumber(v) * math.pow(256,#ips-i)) 
+  end
+  return num
 end
 
 return _M
