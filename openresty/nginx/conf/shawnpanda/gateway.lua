@@ -45,7 +45,7 @@ for i=0,7,1 do
         end
 
         -- 2. 判断标记有效性
-        local is_valid = helper:compareFlagByType(type, flag, value)
+        local is_valid = helper:verifyFlagByType(type, flag, value)
         if not is_valid then
             break
         end

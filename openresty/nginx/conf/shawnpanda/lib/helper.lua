@@ -144,11 +144,11 @@ _M.getDomainHeaderName = function(self)
     local header_name = nil
 
     if 3 == pieces then
-        header_name = pieces[1]
+        header_name = http_info[1]
     end
 
     if 4 == pieces then
-        header_name = pieces[2]
+        header_name = http_info[2]
     end
 
     return header_name
